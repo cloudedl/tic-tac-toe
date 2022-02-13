@@ -9,8 +9,13 @@ body {
 
 }
 
+#status {
+    display: inline-block;
 
-#gameBoard {
+}
+
+
+.gameBoard {
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 100px 100px 100px;
@@ -34,13 +39,13 @@ body {
   
 }
 
-.Reset {
+.reset {
     background-color: hotpink;
     width: 200px;
     height: 50px;
     font-size: 25px;
     color: black;
-    box-shadow: 2px 2px 2px 2px #pink;
+    box-shadow: 2px 2px 2px 2px pink;
     border: 2px solid pink;
     cursor: pointer;
 
