@@ -1,0 +1,47 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+body {
+    background-color:skyblue;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+
+}
+
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    column-gap: 5px;
+    row-gap: 5px;
+    margin: 10px auto;
+    width: 300px;
+    
+
+}
+
+
+.boardSquare {
+    background: pink;
+    border: 1px honeydew;
+    padding: 10px; 
+    font-size: 45px;
+    line-height: 80px;
+    cursor: pointer;
+
+  
+}
+
+.Reset {
+    background-color: hotpink;
+    width: 200px;
+    height: 50px;
+    font-size: 25px;
+    color: black;
+    box-shadow: 2px 2px 2px 2px #pink;
+    border: 2px solid pink;
+    cursor: pointer;
+
+}
