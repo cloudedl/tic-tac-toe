@@ -2,6 +2,7 @@ Tic-Tac-Toe delieverable for General Assembly Coding Bootcamp implementing HTML,
 
 
 Requirements:
+
 A user should be able to click on different squares to make a move.
 
 Every click will alternate between marking an X and O
