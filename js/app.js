@@ -1,6 +1,7 @@
+//Create document querySelector links to the HTML doc.
 const gameBoard = document.querySelector(".gameBoard")
-//const playerTurnStatus = document.querySelector("#status")
 const resetButton = document.querySelector(".reset")
+const statusWin = document.querySelector("#status")
 const sq1 = document.querySelector("#sq1")
 const sq2 = document.querySelector("#sq2")
 const sq3 = document.querySelector("#sq3")
@@ -13,64 +14,16 @@ const sq9 = document.querySelector("#sq9")
 
 
 
-
-
-
-
-
-// const playerTurnX = document.createElement("div");
-// playerTurnX.id = "status";
-// playerTurnX.innerHTML = "<p> It is X's Turn"
-
-// const playerTurnO = document.createElement("div");
-// playerTurnO.id = "status";
-// playerTurnO.innerHTML = "<p> It is O's Turn"
-// playerTurnStatus.replaceWith(playerTurnO)
-
-// const winningMessage = () => `Player ${currentPlayer} has won!`;
-// const drawMessage = () => `Game ended in a draw!`;
-// const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
-
-
-
-//(number % 2 === 0) maybe use if else to toggle clicks. May need a click event counter
-let playerTurn = 0
+//variable used to alternate player turns
+let playerTurn = 1
+//Once turn starts this variable with be either X or O
 let currentPlayer = ""
+//This will store the turns completed by the players
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
-// // if (playerTurn % 2 === 0) {
-//     "O"
-// } else {
-//     "X"
-// }
+//gameActive = true means game is playing. 
+let gameActive = true
 
-//PlayerStatus - Turn
-// Erase the text in .status then replace the text in status on Click  based off of player turn
-
-
-
-
-
-//conditions needed to win Tic-Tac-Toe
-const winningConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-
-
-
-
-//   const resetBoard = () => {
-//      console.log("resetButton was clicked")
-
-//   }
 
 
 
@@ -78,111 +31,162 @@ const winningConditions = [
 const clickCell = () => {
 
     const playerTurnStatus = document.querySelector("#status")
-    
-    playerTurn += 1
-   
-    //     element[i].textContent = "X"
-    
+
+
     if (playerTurn % 2 === 0) {
-        const playerTurnO = document.createElement("div");
-        playerTurnO.id = "status";
-        playerTurnO.innerHTML = "<p> It is X's Turn </p>"
-        playerTurnStatus.replaceWith(playerTurnO)
-        currentPlayer= "X"
-    
+        statusWin.textContent = "It is X's Turn"
+        currentPlayer = "X"
+
     } else {
-        const playerTurnX = document.createElement("div");
-        playerTurnX.id = "status";
-        playerTurnX.innerHTML = "<p> It is O's Turn</p>"
-        playerTurnStatus.replaceWith(playerTurnX)
+        statusWin.textContent = "It is O's Turn"
         currentPlayer = "O"
-
     }
 
-
-// const handlePlayerChange = () => {
-//     if (playerTurn % 2 === 0) {
-//         currentPlayer = "X";
-//     }else {
-//     currentPlayer = "O";
-//     }
-// }
-
-    
-    console.log(currentPlayer)
-    console.log("the number of times clicked is" , playerTurn)
-}
-
-const turnPlay1 = () => {
-    //if cell is "" then currentPlayer
-    if (sq1.innerText === "") {
-    sq1.textContent = currentPlayer
-    }
-}
-const turnPlay2 = () => {
-    //if cell is "" then currentPlayer
-    if (sq2.innerText === "") {
-    sq2.textContent = currentPlayer
-    }
-}
-const turnPlay3 = () => {
-    //if cell is "" then currentPlayer
-    if (sq3.innerText === "") {
-    sq3.textContent = currentPlayer
-    }
-}
-const turnPlay4 = () => {
-    //if cell is "" then currentPlayer
-    if (sq4.innerText === "") {
-    sq4.textContent = currentPlayer
-    }
-}
-const turnPlay5 = () => {
-    //if cell is "" then currentPlayer
-    if (sq5.innerText === "") {
-    sq5.textContent = currentPlayer
-    }
-}
-const turnPlay6 = () => {
-    //if cell is "" then currentPlayer
-    if (sq6.innerText === "") {
-    sq6.textContent = currentPlayer
-    }
-}
-const turnPlay7 = () => {
-    //if cell is "" then currentPlayer
-    if (sq7.innerText === "") {
-    sq7.textContent = currentPlayer
-    }
-}
-const turnPlay8 = () => {
-    //if cell is "" then currentPlayer
-    if (sq8.innerText === "") {
-    sq8.textContent = currentPlayer
-    }
-}
-const turnPlay9 = () => {
-    //if cell is "" then currentPlayer
-    if (sq9.innerText === "") {
-    sq9.textContent = currentPlayer
-    }
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    gameBoard.addEventListener("click", clickCell)
-    sq1.addEventListener("click", turnPlay1)
-    sq2.addEventListener("click", turnPlay2)
-    sq3.addEventListener("click", turnPlay3)
-    sq4.addEventListener("click", turnPlay4)
-    sq5.addEventListener("click", turnPlay5)
-    sq6.addEventListener("click", turnPlay6)
-    sq7.addEventListener("click", turnPlay7)
-    sq8.addEventListener("click", turnPlay8)
-    sq9.addEventListener("click", turnPlay9)
-
-    //resetButton.addEventListener("click", resetBoard)
     
 
 
-})
+
+    //Logic to determine if X is the winner
+    if (gameState[0] === "X" && gameState[1] === "X" && gameState[2] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[3] === "X" && gameState[4] === "X" && gameState[5] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[6] === "X" && gameState[7] === "X" && gameState[8] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[0] === "X" && gameState[3] === "X" && gameState[6] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[1] === "X" && gameState[4] === "X" && gameState[7] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[2] === "X" && gameState[5] === "X" && gameState[8] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[0] === "X" && gameState[4] === "X" && gameState[8] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    } else if (gameState[2] === "X" && gameState[4] === "X" && gameState[6] === "X") {
+        statusWin.textContent = "X Wins!"
+        gameActive = false
+    }
+
+
+    //logic to determine if O is the winner
+    if (gameState[0] === "O" && gameState[1] === "O" && gameState[2] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[3] === "O" && gameState[4] === "O" && gameState[5] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[6] === "O" && gameState[7] === "O" && gameState[8] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[0] === "O" && gameState[3] === "O" && gameState[6] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[1] === "O" && gameState[4] === "O" && gameState[7] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[2] === "O" && gameState[5] === "O" && gameState[8] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[0] === "O" && gameState[4] === "O" && gameState[8] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    } else if (gameState[2] === "O" && gameState[4] === "O" && gameState[6] === "O") {
+        statusWin.textContent = "O Wins!"
+        gameActive = false
+    }
+
+    //Logic to determine a Draw. Once all array slots are filled. The game results in a draw.
+    const results = gameState.includes("");
+    if (results == false) {
+        statusWin.textContent = "The game is a Draw."
+    }
+
+}
+
+    
+//selects the ID of a square then inputs the currentPlayers letter into the square. 
+    const turnPlay1 = () => {
+        if (sq1.innerText === "" && gameActive == true) {
+        sq1.textContent = currentPlayer
+        gameState.splice(0, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay2 = () => {
+        if (sq2.innerText === "" && gameActive == true) {
+        sq2.textContent = currentPlayer
+        gameState.splice(1, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay3 = () => {
+        if (sq3.innerText === "" && gameActive == true) {
+        sq3.textContent = currentPlayer
+        gameState.splice(2, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay4 = () => {
+        if (sq4.innerText === "" && gameActive == true) {
+        sq4.textContent = currentPlayer
+        gameState.splice(3, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay5 = () => {
+        if (sq5.innerText === "" && gameActive == true) {
+        sq5.textContent = currentPlayer
+        gameState.splice(4, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay6 = () => {
+        if (sq6.innerText === "" && gameActive == true) {
+        sq6.textContent = currentPlayer
+        gameState.splice(5, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay7 = () => {
+        if (sq7.innerText === "" && gameActive == true) {
+        sq7.textContent = currentPlayer
+        gameState.splice(6, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay8 = () => {
+        if (sq8.innerText === "" && gameActive == true) {
+        sq8.textContent = currentPlayer
+        gameState.splice(7, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+    const turnPlay9 = () => {
+        if (sq9.innerText === "" && gameActive == true) {
+        sq9.textContent = currentPlayer
+        gameState.splice(8, 1 , currentPlayer)
+        playerTurn += 1
+        }
+    }
+
+   
+//DOM interactions with eventListeners
+    document.addEventListener("DOMContentLoaded", () => {
+        gameBoard.addEventListener("click", clickCell)
+        sq1.addEventListener("click", turnPlay1)
+        sq2.addEventListener("click", turnPlay2)
+        sq3.addEventListener("click", turnPlay3)
+        sq4.addEventListener("click", turnPlay4)
+        sq5.addEventListener("click", turnPlay5)
+        sq6.addEventListener("click", turnPlay6)
+        sq7.addEventListener("click", turnPlay7)
+        sq8.addEventListener("click", turnPlay8)
+        sq9.addEventListener("click", turnPlay9)
+
+    })

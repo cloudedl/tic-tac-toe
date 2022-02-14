@@ -45,8 +45,6 @@ body {
     height: 50px;
     font-size: 25px;
     color: black;
-    box-shadow: 2px 2px 2px 2px pink;
-    border: 2px solid pink;
     cursor: pointer;
 
 }
